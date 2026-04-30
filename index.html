@@ -6,144 +6,195 @@
     <title>Script Engine - AI Powered Content Generator</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="css/result.css">
 </head>
 <body>
-    <div class="container">
+    <div class="app-container">
         <!-- Header -->
-        <header class="header">
-            <div class="header-content">
-                <h1>🎬 Script Engine</h1>
-                <p>Generate Script Marketing yang Emosional & Relevan dengan AI</p>
+        <header class="app-header">
+            <div class="header-left">
+                <h1 class="app-title">🎬 Script Engine</h1>
+                <p class="app-subtitle">Generate Script Marketing yang Emosional & Relevan dengan AI</p>
             </div>
-            <div class="header-actions">
-                <button id="apiKeyBtn" class="btn btn-secondary">⚙️ Setup API Key</button>
-                <button id="historyBtn" class="btn btn-secondary">📋 Lihat History</button>
+            <div class="header-right">
+                <button id="apiKeyBtn" class="btn btn-icon">⚙️ API Key</button>
+                <button id="historyBtn" class="btn btn-icon">📋 History</button>
             </div>
         </header>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Form Section -->
-            <section id="formSection" class="form-section">
-                <h2>📝 Input Informasi Produk</h2>
-                <form id="scriptForm" class="script-form">
-                    
-                    <!-- 1. Nama Produk -->
-                    <div class="form-group">
-                        <label for="productName">1. Nama Produk *</label>
-                        <input 
-                            type="text" 
-                            id="productName" 
-                            placeholder="Contoh: Hijab Premium Viscose" 
-                            required
-                        >
-                        <small>Nama brand / produk yang akan digunakan dalam script</small>
-                    </div>
-
-                    <!-- 2. Kategori Produk -->
-                    <div class="form-group">
-                        <label for="productCategory">2. Kategori Produk *</label>
-                        <select id="productCategory" required>
-                            <option value="">-- Pilih Kategori --</option>
-                            <option value="lifestyle">👗 Lifestyle & Fashion</option>
-                            <option value="automotive">🚗 Otomotif & Bengkel</option>
-                            <option value="food">🍕 Makanan & Minuman</option>
-                            <option value="beauty">💄 Kecantikan & Skincare</option>
-                            <option value="technology">📱 Teknologi & Gadget</option>
-                            <option value="furniture">🛋️ Perabotan & Rumah</option>
-                            <option value="service">🎯 Jasa & Layanan</option>
-                        </select>
-                        <small id="categoryDesc" class="category-description"></small>
-                    </div>
-
-                    <!-- 3. USP (Keunggulan Produk) -->
-                    <div class="form-group">
-                        <label for="productUSP">3. USP - Keunggulan Produk *</label>
-                        <textarea 
-                            id="productUSP" 
-                            placeholder="Contoh: Bikin kenyang 4-6 jam tanpa ngemil, material breathable, nyaman di kulit sensitif"
-                            rows="3"
-                            required
-                        ></textarea>
-                        <small>⚠️ WAJIB SPESIFIK & BERBASIS MANFAAT (bukan generic seperti 'kualitas bagus')</small>
-                    </div>
-
-                    <!-- 4. Harga Produk -->
-                    <div class="form-group">
-                        <label for="productPrice">4. Harga Produk *</label>
-                        <div class="price-input">
-                            <span>Rp</span>
-                            <input 
-                                type="number" 
-                                id="productPrice" 
-                                placeholder="Contoh: 150000" 
-                                required
-                            >
-                        </div>
-                        <small id="priceDesc" class="price-description"></small>
-                    </div>
-
-                    <!-- 5. Objective Konten -->
-                    <div class="form-group">
-                        <label for="contentObjective">5. Objective Konten *</label>
-                        <select id="contentObjective" required>
-                            <option value="">-- Pilih Objective --</option>
-                            <option value="hard_conversion">⚡ Jualan Cepat (Hard Conversion)</option>
-                            <option value="soft_conversion">🤝 Bangun Kepercayaan (Soft Conversion)</option>
-                            <option value="authority">🏆 Edukasi & Branding (Authority Building)</option>
-                        </select>
-                        <small id="objectiveDesc" class="objective-description"></small>
-                    </div>
-
-                    <!-- 6. Target Usia -->
-                    <div class="form-group">
-                        <label for="targetAge">6. Target Usia *</label>
-                        <div class="age-range">
-                            <div>
+        <!-- Main View Container -->
+        <main class="main-container">
+            <!-- Input View (Tab 1) -->
+            <section id="inputView" class="view active">
+                <div class="view-content">
+                    <h2>📝 Input Informasi Produk</h2>
+                    <form id="scriptForm" class="script-form">
+                        
+                        <!-- Row 1: Nama Produk & Kategori -->
+                        <div class="form-row">
+                            <div class="form-group full">
+                                <label for="productName">Nama Produk *</label>
                                 <input 
-                                    type="number" 
-                                    id="ageMin" 
-                                    placeholder="Min" 
-                                    min="13" 
-                                    max="80"
+                                    type="text" 
+                                    id="productName" 
+                                    placeholder="Contoh: Hijab Premium Viscose" 
                                     required
                                 >
-                                <span>–</span>
-                                <input 
-                                    type="number" 
-                                    id="ageMax" 
-                                    placeholder="Max" 
-                                    min="13" 
-                                    max="80"
-                                    required
-                                >
-                                <span>tahun</span>
+                                <small>Nama brand / produk yang akan digunakan dalam script</small>
                             </div>
-                            <small id="ageDesc" class="age-description"></small>
                         </div>
-                    </div>
 
-                    <!-- 7. Platform -->
-                    <div class="form-group">
-                        <label for="platform">7. Platform *</label>
-                        <select id="platform" required>
-                            <option value="">-- Pilih Platform --</option>
-                            <option value="tiktok">📱 TikTok</option>
-                            <option value="instagram">📷 Instagram</option>
-                            <option value="facebook">👍 Facebook</option>
-                            <option value="shopee">🛒 Shopee</option>
-                            <option value="youtube">▶️ YouTube</option>
-                        </select>
-                        <small id="platformDesc" class="platform-description"></small>
-                    </div>
+                        <!-- Row 2: Kategori & Platform -->
+                        <div class="form-row">
+                            <div class="form-group half">
+                                <label for="productCategory">Kategori Produk *</label>
+                                <select id="productCategory" required>
+                                    <option value="">-- Pilih Kategori --</option>
+                                    <option value="lifestyle">👗 Lifestyle & Fashion</option>
+                                    <option value="automotive">🚗 Otomotif & Bengkel</option>
+                                    <option value="food">🍕 Makanan & Minuman</option>
+                                    <option value="beauty">💄 Kecantikan & Skincare</option>
+                                    <option value="technology">📱 Teknologi & Gadget</option>
+                                    <option value="furniture">🛋️ Perabotan & Rumah</option>
+                                    <option value="service">🎯 Jasa & Layanan</option>
+                                </select>
+                                <small id="categoryDesc" class="desc-text"></small>
+                            </div>
+                            <div class="form-group half">
+                                <label for="platform">Platform *</label>
+                                <select id="platform" required>
+                                    <option value="">-- Pilih Platform --</option>
+                                    <option value="tiktok">TikTok</option>
+                                    <option value="instagram">Instagram</option>
+                                    <option value="facebook">Facebook</option>
+                                    <option value="shopee">Shopee</option>
+                                    <option value="youtube">YouTube</option>
+                                </select>
+                                <small id="platformDesc" class="desc-text"></small>
+                            </div>
+                        </div>
 
-                    <!-- Submit Button -->
-                    <div class="form-actions">
-                        <button type="submit" class="btn btn-primary btn-lg" id="generateBtn">
-                            ✨ Generate Script dengan AI
-                        </button>
+                        <!-- Row 3: USP -->
+                        <div class="form-row">
+                            <div class="form-group full">
+                                <label for="productUSP">USP - Keunggulan Produk *</label>
+                                <textarea 
+                                    id="productUSP" 
+                                    placeholder="Contoh: Bikin kenyang 4-6 jam tanpa ngemil, material breathable, nyaman di kulit sensitif"
+                                    rows="3"
+                                    required
+                                ></textarea>
+                                <small>⚠️ WAJIB SPESIFIK & BERBASIS MANFAAT (bukan generic seperti 'kualitas bagus')</small>
+                            </div>
+                        </div>
+
+                        <!-- Row 4: Harga & Target Usia -->
+                        <div class="form-row">
+                            <div class="form-group half">
+                                <label for="productPrice">Harga Produk *</label>
+                                <div class="price-input">
+                                    <span>Rp</span>
+                                    <input 
+                                        type="number" 
+                                        id="productPrice" 
+                                        placeholder="150000" 
+                                        required
+                                    >
+                                </div>
+                                <small id="priceDesc" class="desc-text"></small>
+                            </div>
+                            <div class="form-group half">
+                                <label>Target Usia *</label>
+                                <div class="age-range">
+                                    <input 
+                                        type="number" 
+                                        id="ageMin" 
+                                        placeholder="Min" 
+                                        min="13" 
+                                        max="80"
+                                        required
+                                    >
+                                    <span class="age-dash">–</span>
+                                    <input 
+                                        type="number" 
+                                        id="ageMax" 
+                                        placeholder="Max" 
+                                        min="13" 
+                                        max="80"
+                                        required
+                                    >
+                                    <span class="age-unit">tahun</span>
+                                </div>
+                                <small id="ageDesc" class="desc-text"></small>
+                            </div>
+                        </div>
+
+                        <!-- Row 5: Objective & Strategi Psikologi -->
+                        <div class="form-row">
+                            <div class="form-group half">
+                                <label for="contentObjective">Objective Konten *</label>
+                                <select id="contentObjective" required>
+                                    <option value="">-- Pilih Objective --</option>
+                                    <option value="hard_conversion">⚡ Jualan Cepat</option>
+                                    <option value="soft_conversion">🤝 Bangun Kepercayaan</option>
+                                    <option value="authority">🏆 Edukasi & Branding</option>
+                                </select>
+                                <small id="objectiveDesc" class="desc-text"></small>
+                            </div>
+                            <div class="form-group half">
+                                <label for="psychologyStrategy">Strategi Psikologi *</label>
+                                <select id="psychologyStrategy" required>
+                                    <option value="">-- Pilih Strategi --</option>
+                                    <option value="FEAR">😨 FEAR (Ketakutan)</option>
+                                    <option value="STORY">📖 STORY (Cerita)</option>
+                                    <option value="LOGIC">🧠 LOGIC (Logika)</option>
+                                    <option value="CURIOSITY">🤔 CURIOSITY (Penasaran)</option>
+                                    <option value="HARD_SELL">💪 HARD SELL (Penjualan)</option>
+                                </select>
+                                <small id="psychologyDesc" class="desc-text"></small>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-lg" id="generateBtn">
+                                ✨ Generate 5 Script dengan AI
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Result View (Tab 2) -->
+            <section id="resultView" class="view">
+                <div class="view-header">
+                    <div class="header-info">
+                        <h2 id="resultTitle">Hasil Generate Script</h2>
+                        <div id="psychologyInsight" class="psychology-insight"></div>
                     </div>
-                </form>
+                    <div class="header-actions">
+                        <button class="btn btn-secondary" id="backToInputBtn">← Kembali Input</button>
+                    </div>
+                </div>
+
+                <div id="scriptContainer" class="script-container"></div>
+
+                <div id="loadingOverlay" class="loading-overlay hidden">
+                    <div class="loading-spinner">
+                        <div class="spinner"></div>
+                        <p>Generating script dengan AI...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- History View (Tab 3) -->
+            <section id="historyView" class="view">
+                <div class="view-header">
+                    <h2>📋 History Script</h2>
+                    <button class="btn btn-secondary" id="backFromHistoryBtn">← Kembali</button>
+                </div>
+                <div id="historyList" class="history-list"></div>
             </section>
 
             <!-- API Key Modal -->
@@ -175,50 +226,16 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Result Section (Hidden by default) -->
-            <section id="resultSection" class="result-section hidden">
-                <div class="result-header">
-                    <div>
-                        <h2>📊 Script yang Dihasilkan</h2>
-                        <div id="psychologyInsight" class="psychology-insight"></div>
-                    </div>
-                    <div class="result-actions">
-                        <button class="btn btn-secondary" id="regenerateBtn">🔄 Regenerate</button>
-                        <button class="btn btn-secondary" id="downloadBtn">⬇️ Download</button>
-                        <button class="btn btn-secondary" id="backBtn">← Kembali</button>
-                    </div>
-                </div>
-
-                <div id="scriptContainer" class="script-container"></div>
-            </section>
-
-            <!-- History Section (Hidden by default) -->
-            <section id="historySection" class="history-section hidden">
-                <div class="history-header">
-                    <h2>📋 History Script</h2>
-                    <button class="btn btn-secondary" id="backFromHistoryBtn">← Kembali</button>
-                </div>
-                <div id="historyList" class="history-list"></div>
-            </section>
-
-            <!-- Loading State -->
-            <div id="loadingOverlay" class="loading-overlay hidden">
-                <div class="loading-spinner">
-                    <div class="spinner"></div>
-                    <p>Generating script dengan AI...</p>
-                </div>
-            </div>
-
-            <!-- Error Toast -->
-            <div id="errorToast" class="toast toast-error hidden"></div>
-            <div id="successToast" class="toast toast-success hidden"></div>
         </main>
 
         <!-- Footer -->
-        <footer class="footer">
-            <p>🚀 Script Engine v1.0 | Powered by Gemini AI</p>
+        <footer class="app-footer">
+            <p>🚀 Script Engine v2.0 | Powered by Gemini AI</p>
         </footer>
+
+        <!-- Toast Notifications -->
+        <div id="errorToast" class="toast toast-error hidden"></div>
+        <div id="successToast" class="toast toast-success hidden"></div>
     </div>
 
     <!-- Scripts -->
